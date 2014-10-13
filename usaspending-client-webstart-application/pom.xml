@@ -1,0 +1,145 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>${project.parent.groupId}.${project.parent.artifactId}</groupId>
+    <artifactId>usaspending-client-webstart-application</artifactId>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>com.coherentlogic.usaspending</groupId>
+        <artifactId>client</artifactId>
+        <version>1.0.2-RELEASE</version>
+    </parent>
+
+    <name>usaspending-client-webstart-application</name>
+    <description>This application demonstrates how to use the USA Spending Client and
+    allows the developer to write custom queries via the USA Spending Client API.</description>
+    <url>http://www.coherentlogic.com</url>
+    <organization>
+        <name>Coherent Logic Limited</name>
+        <url>www.coherentlogic.com</url>
+    </organization>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.coherentlogic.coherent.data-model</groupId>
+            <artifactId>data-model-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.coherentlogic.usaspending.client</groupId>
+            <artifactId>usaspending-client-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.3.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.mojo.webstart</groupId>
+            <artifactId>webstart-maven-plugin</artifactId>
+            <version>1.0-beta-2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.miglayout</groupId>
+            <artifactId>miglayout</artifactId>
+            <version>3.7.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.maven-play-plugin.com.jamonapi</groupId>
+            <artifactId>jamon</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>webstart-maven-plugin</artifactId>
+                <version>1.0-beta-6</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>keytool-api-1.7</artifactId>
+                        <version>1.4</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jnlp-inline</goal> <!-- use jnlp, jnlp-inline or jnlp-single as appropriate -->
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <excludeTransitive>false</excludeTransitive>
+
+                    <!-- The path where the libraries are stored within the jnlp structure. 
+                        not required. by default the libraries are within the working directory -->
+                    <libPath>lib</libPath>
+
+                    <!-- JNLP generation -->
+                    <jnlp>
+                        <outputFile>application.jnlp</outputFile>
+
+                        <!-- used to automatically identify the jar containing the main class. -->
+                        <!-- this is perhaps going to change -->
+                        <mainClass>com.coherentlogic.usaspending.client.webstart.application.USASpendingClientGUI</mainClass>
+                    </jnlp>
+
+                    <sign>
+                        <keystore>/development/temp/keystore/server.keystore</keystore>
+                        <keypass>${CA_CERT_PASSWORD}</keypass><!-- ${keypass} -->
+                        <storepass>${CA_CERT_PASSWORD}</storepass> <!-- ${storepass} -->
+                        <alias>coherent logic limited's comodo ca limited id</alias>
+
+                        <storetype>jks</storetype>
+                        <validity>365</validity>
+                        <dnameCn>Support</dnameCn>
+                        <dnameOu>Coherent Logic Limited</dnameOu>
+                        <dnameO>Coherent Logic Limited</dnameO>
+                        <dnameL>Vienna</dnameL>
+                        <dnameSt>Virginia</dnameSt>
+                        <dnameC>US</dnameC>
+
+                        <verify>true</verify>
+
+                        <keystoreConfig>
+                            <delete>false</delete>
+                            <gen>false</gen>
+                        </keystoreConfig>
+                    </sign>
+
+                    <!-- pack200>false</pack200>
+                    <gzip>true</gzip>
+                    <unsign>true</unsign -->
+
+                    <outputJarVersions>false</outputJarVersions>
+                    <verbose>true</verbose>
+                    <updateManifestEntries>
+                        <Permissions>all-permissions</Permissions>
+                    </updateManifestEntries>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

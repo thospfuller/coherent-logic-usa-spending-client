@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.coherentlogic.usaspending</groupId>
+        <artifactId>client</artifactId>
+        <version>1.0.2-RELEASE</version>
+    </parent>
+
+    <groupId>${project.parent.groupId}.${project.parent.artifactId}</groupId>
+    <artifactId>usaspending-client-example</artifactId>
+
+    <name>usaspending-client-example</name>
+    <url>http://www.coherentlogic.com</url>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.coherentlogic.usaspending.client</groupId>
+            <artifactId>usaspending-client-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.maven-play-plugin.com.jamonapi</groupId>
+            <artifactId>jamon</artifactId>
+        </dependency>
+    </dependencies>
+</project>

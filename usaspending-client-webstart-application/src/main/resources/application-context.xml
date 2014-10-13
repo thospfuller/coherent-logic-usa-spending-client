@@ -1,0 +1,252 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <context:annotation-config />
+    <context:component-scan base-package="com.coherentlogic.usaspending.client.webstart.application" />
+
+    <bean id="basicUSASpendingRestTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="messageConverters">
+            <list>
+                <bean id="xstreamMessageConverter"
+                    class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+                    <property name="marshaller" ref="basicXStreamMarshaller" />
+                    <property name="unmarshaller" ref="basicXStreamMarshaller" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+    <bean id="mediumUSASpendingRestTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="messageConverters">
+            <list>
+                <bean id="xstreamMessageConverter"
+                    class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+                    <property name="marshaller" ref="mediumXStreamMarshaller" />
+                    <property name="unmarshaller" ref="mediumXStreamMarshaller" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+    <bean id="summaryUSASpendingRestTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="messageConverters">
+            <list>
+                <bean id="xstreamMessageConverter"
+                    class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+                    <property name="marshaller" ref="summaryXStreamMarshaller" />
+                    <property name="unmarshaller" ref="summaryXStreamMarshaller" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+    <bean id="completeUSASpendingRestTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="messageConverters">
+            <list>
+                <bean id="xstreamMessageConverter"
+                    class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+                    <property name="marshaller" ref="completeXStreamMarshaller" />
+                    <property name="unmarshaller" ref="completeXStreamMarshaller" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="basicXStreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+        <!-- Underscores in attributes cause problems with XStream and the stream driver below
+             addresses this issue - in particular see the XmlFriendlyReplacer.
+          -->
+        <property name="streamDriver">
+            <bean class="com.thoughtworks.xstream.io.xml.XppDriver">
+                <constructor-arg>
+                    <bean class="com.thoughtworks.xstream.io.xml.XmlFriendlyReplacer">
+                        <constructor-arg index="0" value="_-"/>
+                        <constructor-arg index="1" value="_"/>
+                    </bean>
+                </constructor-arg>
+            </bean>
+        </property>
+        <property name="annotatedClasses">
+            <array>
+                <value>com.coherentlogic.usaspending.client.core.domain.Basic</value>
+            </array>
+        </property>
+    </bean>
+    <bean id="mediumXStreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+        <!-- Underscores in attributes cause problems with XStream and the stream driver below
+             addresses this issue - in particular see the XmlFriendlyReplacer.
+          -->
+        <property name="streamDriver">
+            <bean class="com.thoughtworks.xstream.io.xml.XppDriver">
+                <constructor-arg>
+                    <bean class="com.thoughtworks.xstream.io.xml.XmlFriendlyReplacer">
+                        <constructor-arg index="0" value="_-"/>
+                        <constructor-arg index="1" value="_"/>
+                    </bean>
+                </constructor-arg>
+            </bean>
+        </property>
+        <property name="annotatedClasses">
+            <array>
+                <value>com.coherentlogic.usaspending.client.core.domain.Medium</value>
+            </array>
+        </property>
+    </bean>
+    <bean id="summaryXStreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+        <!-- Underscores in attributes cause problems with XStream and the stream driver below
+             addresses this issue - in particular see the XmlFriendlyReplacer.
+          -->
+        <property name="streamDriver">
+            <bean class="com.thoughtworks.xstream.io.xml.XppDriver">
+                <constructor-arg>
+                    <bean class="com.thoughtworks.xstream.io.xml.XmlFriendlyReplacer">
+                        <constructor-arg index="0" value="_-"/>
+                        <constructor-arg index="1" value="_"/>
+                    </bean>
+                </constructor-arg>
+            </bean>
+        </property>
+        <property name="annotatedClasses">
+            <array>
+                <value>com.coherentlogic.usaspending.client.core.domain.Summary</value>
+            </array>
+        </property>
+    </bean>
+    <bean id="completeXStreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+        <!-- Underscores in attributes cause problems with XStream and the stream driver below
+             addresses this issue - in particular see the XmlFriendlyReplacer.
+          -->
+        <property name="streamDriver">
+            <bean class="com.thoughtworks.xstream.io.xml.XppDriver">
+                <constructor-arg>
+                    <bean class="com.thoughtworks.xstream.io.xml.XmlFriendlyReplacer">
+                        <constructor-arg index="0" value="_-"/>
+                        <constructor-arg index="1" value="_"/>
+                    </bean>
+                </constructor-arg>
+            </bean>
+        </property>
+        <property name="annotatedClasses">
+            <array>
+                <value>com.coherentlogic.usaspending.client.core.domain.Complete</value>
+            </array>
+        </property>
+    </bean>
+
+    <bean id="nullCache" class="com.coherentlogic.coherent.data.model.core.cache.NullCache"/>
+
+    <bean id="cacheServiceProviderSpecification" class="com.coherentlogic.coherent.data.model.core.cache.MapCompliantCacheServiceProvider">
+        <constructor-arg name="cache"><map/></constructor-arg>
+    </bean>
+
+    <bean id="basicQueryBuilderFactory" class="com.coherentlogic.usaspending.client.core.factories.QueryBuilderFactory">
+        <constructor-arg name="restTemplate" ref="basicUSASpendingRestTemplate"/>
+        <constructor-arg name="uri" value="http://www.usaspending.gov/"/>
+        <constructor-arg name="cacheServiceProviderSpecification" ref="nullCache"/>
+    </bean>
+    <bean id="mediumQueryBuilderFactory" class="com.coherentlogic.usaspending.client.core.factories.QueryBuilderFactory">
+        <constructor-arg name="restTemplate" ref="mediumUSASpendingRestTemplate"/>
+        <constructor-arg name="uri" value="http://www.usaspending.gov/"/>
+        <constructor-arg name="cacheServiceProviderSpecification" ref="nullCache"/>
+    </bean>
+        <bean id="summaryQueryBuilderFactory" class="com.coherentlogic.usaspending.client.core.factories.QueryBuilderFactory">
+        <constructor-arg name="restTemplate" ref="summaryUSASpendingRestTemplate"/>
+        <constructor-arg name="uri" value="http://www.usaspending.gov/"/>
+        <constructor-arg name="cacheServiceProviderSpecification" ref="nullCache"/>
+    </bean>
+        <bean id="completeQueryBuilderFactory" class="com.coherentlogic.usaspending.client.core.factories.QueryBuilderFactory">
+        <constructor-arg name="restTemplate" ref="completeUSASpendingRestTemplate"/>
+        <constructor-arg name="uri" value="http://www.usaspending.gov/"/>
+        <constructor-arg name="cacheServiceProviderSpecification" ref="nullCache"/>
+    </bean>
+
+    <!-- bean id="basicQueryBuilder"
+     class="com.coherentlogic.usaspending.client.core.builders.QueryBuilder"
+     factory-bean="basicQueryBuilderFactory"
+     factory-method="getInstance"/>
+    <bean id="mediumQueryBuilder"
+     class="com.coherentlogic.usaspending.client.core.builders.QueryBuilder"
+     factory-bean="mediumQueryBuilderFactory"
+     factory-method="getInstance"/>
+    <bean id="summaryQueryBuilder"
+     class="com.coherentlogic.usaspending.client.core.builders.QueryBuilder"
+     factory-bean="summaryQueryBuilderFactory"
+     factory-method="getInstance"/>
+    <bean id="completeQueryBuilder"
+     class="com.coherentlogic.usaspending.client.core.builders.QueryBuilder"
+     factory-bean="completeQueryBuilderFactory"
+     factory-method="getInstance"/ -->
+
+    <bean id="basicExampleResource" class="org.springframework.core.io.ClassPathResource">
+        <constructor-arg name="path" value="BasicExample.groovy"/>
+    </bean>
+
+    <bean id="basicExampleFactory" class="com.coherentlogic.usaspending.client.webstart.application.ExampleFactory">
+        <constructor-arg name="resource" ref="basicExampleResource"/>
+    </bean>
+
+    <bean id="mediumExampleResource" class="org.springframework.core.io.ClassPathResource">
+        <constructor-arg name="path" value="MediumExample.groovy"/>
+    </bean>
+
+    <bean id="mediumExampleFactory" class="com.coherentlogic.usaspending.client.webstart.application.ExampleFactory">
+        <constructor-arg name="resource" ref="mediumExampleResource"/>
+    </bean>
+
+    <bean id="summaryExampleResource" class="org.springframework.core.io.ClassPathResource">
+        <constructor-arg name="path" value="SummaryExample.groovy"/>
+    </bean>
+
+    <bean id="summaryExampleFactory" class="com.coherentlogic.usaspending.client.webstart.application.ExampleFactory">
+        <constructor-arg name="resource" ref="summaryExampleResource"/>
+    </bean>
+
+    <bean id="completeExampleResource" class="org.springframework.core.io.ClassPathResource">
+        <constructor-arg name="path" value="CompleteExample.groovy"/>
+    </bean>
+
+    <bean id="completeExampleFactory" class="com.coherentlogic.usaspending.client.webstart.application.ExampleFactory">
+        <constructor-arg name="resource" ref="completeExampleResource"/>
+    </bean>
+
+    <bean id="basicExample" class="java.lang.String"
+     factory-bean="basicExampleFactory" factory-method="getInstance"/>
+    <bean id="mediumExample" class="java.lang.String"
+     factory-bean="mediumExampleFactory" factory-method="getInstance"/>
+    <bean id="summaryExample" class="java.lang.String"
+     factory-bean="summaryExampleFactory" factory-method="getInstance"/>
+    <bean id="completeExample" class="java.lang.String"
+     factory-bean="completeExampleFactory" factory-method="getInstance"/>
+
+    <util:map id="queryBuilderFactoryMap">
+        <entry key="Basic" value-ref="basicQueryBuilderFactory"/>
+        <entry key="Medium" value-ref="mediumQueryBuilderFactory"/>
+        <entry key="Summary" value-ref="summaryQueryBuilderFactory"/>
+        <entry key="Complete" value-ref="completeQueryBuilderFactory"/>
+    </util:map>
+
+    <util:map id="exampleMap">
+        <entry key="Basic" value-ref="basicExample"/>
+        <entry key="Medium" value-ref="mediumExample"/>
+        <entry key="Summary" value-ref="summaryExample"/>
+        <entry key="Complete" value-ref="completeExample"/>
+    </util:map>
+
+    <bean id="binding" class="groovy.lang.Binding"/>
+
+    <bean id="groovyEngine" class="com.coherentlogic.usaspending.client.webstart.application.GroovyEngine">
+        <constructor-arg name="binding" ref="binding"/>
+    </bean>
+
+    <bean id="usaSpendingClientGUI" class="com.coherentlogic.usaspending.client.webstart.application.USASpendingClientGUI">
+        <constructor-arg name="groovyEngine" ref="groovyEngine"/>
+        <constructor-arg name="queryBuilderFactoryMap" ref="queryBuilderFactoryMap"/>
+        <constructor-arg name="exampleMap" ref="exampleMap"/>
+    </bean>
+</beans>
+
