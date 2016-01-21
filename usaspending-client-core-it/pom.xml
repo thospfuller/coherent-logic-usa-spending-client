@@ -8,7 +8,7 @@
     <parent>
         <groupId>com.coherentlogic.usaspending</groupId>
         <artifactId>client</artifactId>
-        <version>1.0.2-RELEASE</version>
+        <version>1.0.3-RELEASE</version>
     </parent>
 
     <groupId>${project.parent.groupId}.${project.parent.artifactId}</groupId>
@@ -23,6 +23,14 @@
         <dependency>
             <groupId>com.coherentlogic.usaspending.client</groupId>
             <artifactId>usaspending-client-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-core</artifactId>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
