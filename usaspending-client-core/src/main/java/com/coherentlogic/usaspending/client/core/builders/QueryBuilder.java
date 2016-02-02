@@ -74,7 +74,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
 
-import com.coherentlogic.coherent.data.model.core.builders.rest.AbstractQueryBuilder;
+import com.coherentlogic.coherent.data.model.core.builders.rest.AbstractRESTQueryBuilder;
 import com.coherentlogic.coherent.data.model.core.cache.CacheServiceProviderSpecification;
 import com.coherentlogic.usaspending.client.core.exceptions.InvalidFormatException;
 import com.coherentlogic.usaspending.client.core.exceptions.ValueOutOfBoundsException;
@@ -99,7 +99,7 @@ import com.coherentlogic.usaspending.client.core.exceptions.ValueOutOfBoundsExce
  *
  * @author <a href="mailto:support@coherentlogic.com">Support</a>
  */
-public class QueryBuilder extends AbstractQueryBuilder {
+public class QueryBuilder extends AbstractRESTQueryBuilder {
 
     public static final String FAADS_PATH = "/faads/faads.php",
         FPDS_PATH = "/fpds/fpds.php",
