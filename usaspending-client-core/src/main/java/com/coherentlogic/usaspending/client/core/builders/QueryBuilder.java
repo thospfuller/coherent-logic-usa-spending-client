@@ -999,7 +999,7 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
     }
 
     /**
-     * An ID for the governmental program. See <a href="http://www.usaspending.
+     * An ID for the governmental program. See <a href="https://www.usaspending.
      * gov/customcode/apidocsmore_popup.php?printnav=0#CFDA">here</a> for list.
      *
      * @todo Determine the type for cfdaProgramNum -- is this actually a number?
