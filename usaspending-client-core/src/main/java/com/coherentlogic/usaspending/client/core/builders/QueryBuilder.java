@@ -1,7 +1,7 @@
 package com.coherentlogic.usaspending.client.core.builders;
 
-import static com.coherentlogic.usaspending.client.core.util.Constants.ASST_CAT_TYPE;
 import static com.coherentlogic.usaspending.client.core.util.Constants.AGENCY_CODE;
+import static com.coherentlogic.usaspending.client.core.util.Constants.ASST_CAT_TYPE;
 import static com.coherentlogic.usaspending.client.core.util.Constants.BUSN_INDCTR;
 import static com.coherentlogic.usaspending.client.core.util.Constants.CFDA_PROGRAM_NUM;
 import static com.coherentlogic.usaspending.client.core.util.Constants.CITY;
@@ -101,7 +101,8 @@ import com.coherentlogic.usaspending.client.core.exceptions.ValueOutOfBoundsExce
  */
 public class QueryBuilder extends AbstractRESTQueryBuilder {
 
-    public static final String FAADS_PATH = "/faads/faads.php",
+    public static final String USA_SPENDING_URL = "https://www.usaspending.gov/",
+        FAADS_PATH = "/faads/faads.php",
         FPDS_PATH = "/fpds/fpds.php",
         FSRS_PATH = "/fsrs/fsrs.php";
 
@@ -131,6 +132,17 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
             cacheServiceProviderSpecification
     ) {
         super(restTemplate, uri, cacheServiceProviderSpecification);
+    }
+
+    public QueryBuilder(
+        RestTemplate restTemplate,
+        CacheServiceProviderSpecification<String, Object> cacheServiceProviderSpecification
+    ) {
+        super(restTemplate, USA_SPENDING_URL, cacheServiceProviderSpecification);
+    }
+
+    public QueryBuilder(RestTemplate restTemplate) {
+        super(restTemplate, USA_SPENDING_URL);
     }
 
     public QueryBuilder(
