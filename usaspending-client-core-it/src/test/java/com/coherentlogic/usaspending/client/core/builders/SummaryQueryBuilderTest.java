@@ -9,8 +9,8 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.Ignore;
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.web.client.RestTemplate;
@@ -57,9 +57,7 @@ public class SummaryQueryBuilderTest {
         restTemplate = (RestTemplate) context.getBean (
             USA_SPENDING_REST_TEMPLATE_ID);
 
-        queryBuilder = new QueryBuilder(
-            restTemplate,
-            "http://www.usaspending.gov/");
+        queryBuilder = new QueryBuilder(restTemplate);
     }
 
     @After
@@ -90,7 +88,9 @@ public class SummaryQueryBuilderTest {
      * &max_records=5000
      */
     @Test
-    @Ignore("Success with this test is unpredictable.")
+    @Ignore("The usaspending.gov website returns the following for this query (not that switching to 'l', ie. 'low' "
+        + "does return data): <result numFound=\"No data found.  The FSRS summary level of detail will be available "
+        + "soon.\"/>")
     public void testFSRSSummary () {
         Summary summary =
             queryBuilder
