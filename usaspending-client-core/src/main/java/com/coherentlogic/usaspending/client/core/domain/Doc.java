@@ -6,6 +6,7 @@ import static com.coherentlogic.usaspending.client.core.util.Constants.PRIME_AWA
 import static com.coherentlogic.usaspending.client.core.util.Constants.PRIME_AWARD_CONTRACTING_MAJORITY_AGENCY;
 import static com.coherentlogic.usaspending.client.core.util.Constants.PRIME_AWARD_DATE_SIGNED;
 import static com.coherentlogic.usaspending.client.core.util.Constants.PRIME_AWARD_DATE_SUBMITTED;
+import static com.coherentlogic.usaspending.client.core.util.Constants.PRIME_AWARD_FEDERAL_AWARD_ID;
 import static com.coherentlogic.usaspending.client.core.util.Constants.PRIME_AWARD_FUNDING_MAJOR_AGENCY_NAME;
 import static com.coherentlogic.usaspending.client.core.util.Constants.PRIME_AWARD_IDVPIID;
 import static com.coherentlogic.usaspending.client.core.util.Constants.PRIME_AWARD_IDV_AGENCY_ID;
@@ -142,6 +143,9 @@ public class Doc extends SerializableBean {
      */
     @XStreamAlias(PRIME_AWARD_FUNDING_MAJOR_AGENCY_NAME)
     private String primeAwardFundingMajorAgencyName = null;
+
+    @XStreamAlias(PRIME_AWARD_FEDERAL_AWARD_ID)
+    private String primeAwardFederalAwardId = null;
 
     /**
      * 807284971
@@ -557,133 +561,64 @@ public class Doc extends SerializableBean {
         this.subcontractFundingAgencyName = subcontractFundingAgencyName;
     }
 
+    public String getPrimeAwardFederalAwardId() {
+        return primeAwardFederalAwardId;
+    }
+
+    public void setPrimeAwardFederalAwardId(String primeAwardFederalAwardId) {
+        this.primeAwardFederalAwardId = primeAwardFederalAwardId;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
+        result = prime * result + ((fiscalYear == null) ? 0 : fiscalYear.hashCode());
+        result = prime * result + ((primeAwardAgencyId == null) ? 0 : primeAwardAgencyId.hashCode());
+        result = prime * result + ((primeAwardAmount == null) ? 0 : primeAwardAmount.hashCode());
         result = prime * result
-            + ((fiscalYear == null) ? 0 : fiscalYear.hashCode());
-        result = prime
-            * result
-            + ((primeAwardAgencyId == null) ? 0 : primeAwardAgencyId
-                .hashCode());
-        result = prime
-            * result
-            + ((primeAwardAmount == null) ? 0 : primeAwardAmount.hashCode());
-        result = prime
-            * result
-            + ((primeAwardContractingMajorAgency == null) ? 0
-                : primeAwardContractingMajorAgency.hashCode());
-        result = prime
-            * result
-            + ((primeAwardDateSigned == null) ? 0 : primeAwardDateSigned
-                .hashCode());
-        result = prime
-            * result
-            + ((primeAwardDateSubmitted == null) ? 0
-                : primeAwardDateSubmitted.hashCode());
-        result = prime
-            * result
-            + ((primeAwardFundingMajorAgencyName == null) ? 0
-                : primeAwardFundingMajorAgencyName.hashCode());
-        result = prime
-            * result
-            + ((primeAwardIDVAgencyId == null) ? 0 : primeAwardIDVAgencyId
-                .hashCode());
-        result = prime
-            * result
-            + ((primeAwardIDVPIID == null) ? 0 : primeAwardIDVPIID
-                .hashCode());
+                + ((primeAwardContractingMajorAgency == null) ? 0 : primeAwardContractingMajorAgency.hashCode());
+        result = prime * result + ((primeAwardDateSigned == null) ? 0 : primeAwardDateSigned.hashCode());
+        result = prime * result + ((primeAwardDateSubmitted == null) ? 0 : primeAwardDateSubmitted.hashCode());
+        result = prime * result + ((primeAwardFederalAwardId == null) ? 0 : primeAwardFederalAwardId.hashCode());
         result = prime * result
-            + ((primeAwardPIID == null) ? 0 : primeAwardPIID.hashCode());
-        result = prime
-            * result
-            + ((primeAwardProgramSourceAccount == null) ? 0
-                : primeAwardProgramSourceAccount.hashCode());
-        result = prime
-            * result
-            + ((primeAwardProgramSourceAgency == null) ? 0
-                : primeAwardProgramSourceAgency.hashCode());
-        result = prime
-            * result
-            + ((primeAwardProgramTitle == null) ? 0
-                : primeAwardProgramTitle.hashCode());
-        result = prime
-            * result
-            + ((programSourceSubAccount == null) ? 0
-                : programSourceSubAccount.hashCode());
+                + ((primeAwardFundingMajorAgencyName == null) ? 0 : primeAwardFundingMajorAgencyName.hashCode());
+        result = prime * result + ((primeAwardIDVAgencyId == null) ? 0 : primeAwardIDVAgencyId.hashCode());
+        result = prime * result + ((primeAwardIDVPIID == null) ? 0 : primeAwardIDVPIID.hashCode());
+        result = prime * result + ((primeAwardPIID == null) ? 0 : primeAwardPIID.hashCode());
         result = prime * result
-            + ((spendingType == null) ? 0 : spendingType.hashCode());
-        result = prime
-            * result
-            + ((subcontactorDUNSNumber == null) ? 0
-                : subcontactorDUNSNumber.hashCode());
-        result = prime
-            * result
-            + ((subcontractAmount == null) ? 0 : subcontractAmount
-                .hashCode());
+                + ((primeAwardProgramSourceAccount == null) ? 0 : primeAwardProgramSourceAccount.hashCode());
         result = prime * result
-            + ((subcontractDate == null) ? 0 : subcontractDate.hashCode());
-        result = prime
-            * result
-            + ((subcontractFundingAgencyId == null) ? 0
-                : subcontractFundingAgencyId.hashCode());
-        result = prime
-            * result
-            + ((subcontractFundingAgencyName == null) ? 0
-                : subcontractFundingAgencyName.hashCode());
-        result = prime
-            * result
-            + ((subcontractNumber == null) ? 0 : subcontractNumber
-                .hashCode());
-        result = prime
-            * result
-            + ((subcontractPrincipalNAICSCode == null) ? 0
-                : subcontractPrincipalNAICSCode.hashCode());
-        result = prime
-            * result
-            + ((subcontractPrincipalNAICSDescription == null) ? 0
+                + ((primeAwardProgramSourceAgency == null) ? 0 : primeAwardProgramSourceAgency.hashCode());
+        result = prime * result + ((primeAwardProgramTitle == null) ? 0 : primeAwardProgramTitle.hashCode());
+        result = prime * result + ((programSourceSubAccount == null) ? 0 : programSourceSubAccount.hashCode());
+        result = prime * result + ((spendingType == null) ? 0 : spendingType.hashCode());
+        result = prime * result + ((subcontactorDUNSNumber == null) ? 0 : subcontactorDUNSNumber.hashCode());
+        result = prime * result + ((subcontractAmount == null) ? 0 : subcontractAmount.hashCode());
+        result = prime * result + ((subcontractDate == null) ? 0 : subcontractDate.hashCode());
+        result = prime * result + ((subcontractFundingAgencyId == null) ? 0 : subcontractFundingAgencyId.hashCode());
+        result = prime * result
+                + ((subcontractFundingAgencyName == null) ? 0 : subcontractFundingAgencyName.hashCode());
+        result = prime * result + ((subcontractNumber == null) ? 0 : subcontractNumber.hashCode());
+        result = prime * result
+                + ((subcontractPrincipalNAICSCode == null) ? 0 : subcontractPrincipalNAICSCode.hashCode());
+        result = prime * result + ((subcontractPrincipalNAICSDescription == null) ? 0
                 : subcontractPrincipalNAICSDescription.hashCode());
-        result = prime
-            * result
-            + ((subcontractPrincipalPlaceCity == null) ? 0
-                : subcontractPrincipalPlaceCity.hashCode());
-        result = prime
-            * result
-            + ((subcontractPrincipalPlaceDistrict == null) ? 0
-                : subcontractPrincipalPlaceDistrict.hashCode());
-        result = prime
-            * result
-            + ((subcontractPrincipalPlaceZip == null) ? 0
-                : subcontractPrincipalPlaceZip.hashCode());
-        result = prime
-            * result
-            + ((subcontractProjectDescription == null) ? 0
-                : subcontractProjectDescription.hashCode());
-        result = prime
-            * result
-            + ((subcontractorCity == null) ? 0 : subcontractorCity
-                .hashCode());
-        result = prime
-            * result
-            + ((subcontractorCongressionalDistrict == null) ? 0
-                : subcontractorCongressionalDistrict.hashCode());
-        result = prime
-            * result
-            + ((subcontractorName == null) ? 0 : subcontractorName
-                .hashCode());
-        result = prime
-            * result
-            + ((subcontractorState == null) ? 0 : subcontractorState
-                .hashCode());
-        result = prime
-            * result
-            + ((subcontractorStreet == null) ? 0 : subcontractorStreet
-                .hashCode());
-        result = prime
-            * result
-            + ((subcontractorZipCode == null) ? 0 : subcontractorZipCode
-                .hashCode());
+        result = prime * result
+                + ((subcontractPrincipalPlaceCity == null) ? 0 : subcontractPrincipalPlaceCity.hashCode());
+        result = prime * result
+                + ((subcontractPrincipalPlaceDistrict == null) ? 0 : subcontractPrincipalPlaceDistrict.hashCode());
+        result = prime * result
+                + ((subcontractPrincipalPlaceZip == null) ? 0 : subcontractPrincipalPlaceZip.hashCode());
+        result = prime * result
+                + ((subcontractProjectDescription == null) ? 0 : subcontractProjectDescription.hashCode());
+        result = prime * result + ((subcontractorCity == null) ? 0 : subcontractorCity.hashCode());
+        result = prime * result
+                + ((subcontractorCongressionalDistrict == null) ? 0 : subcontractorCongressionalDistrict.hashCode());
+        result = prime * result + ((subcontractorName == null) ? 0 : subcontractorName.hashCode());
+        result = prime * result + ((subcontractorState == null) ? 0 : subcontractorState.hashCode());
+        result = prime * result + ((subcontractorStreet == null) ? 0 : subcontractorStreet.hashCode());
+        result = prime * result + ((subcontractorZipCode == null) ? 0 : subcontractorZipCode.hashCode());
         return result;
     }
 
@@ -714,8 +649,7 @@ public class Doc extends SerializableBean {
         if (primeAwardContractingMajorAgency == null) {
             if (other.primeAwardContractingMajorAgency != null)
                 return false;
-        } else if (!primeAwardContractingMajorAgency
-                .equals(other.primeAwardContractingMajorAgency))
+        } else if (!primeAwardContractingMajorAgency.equals(other.primeAwardContractingMajorAgency))
             return false;
         if (primeAwardDateSigned == null) {
             if (other.primeAwardDateSigned != null)
@@ -725,14 +659,17 @@ public class Doc extends SerializableBean {
         if (primeAwardDateSubmitted == null) {
             if (other.primeAwardDateSubmitted != null)
                 return false;
-        } else if (!primeAwardDateSubmitted
-                .equals(other.primeAwardDateSubmitted))
+        } else if (!primeAwardDateSubmitted.equals(other.primeAwardDateSubmitted))
+            return false;
+        if (primeAwardFederalAwardId == null) {
+            if (other.primeAwardFederalAwardId != null)
+                return false;
+        } else if (!primeAwardFederalAwardId.equals(other.primeAwardFederalAwardId))
             return false;
         if (primeAwardFundingMajorAgencyName == null) {
             if (other.primeAwardFundingMajorAgencyName != null)
                 return false;
-        } else if (!primeAwardFundingMajorAgencyName
-                .equals(other.primeAwardFundingMajorAgencyName))
+        } else if (!primeAwardFundingMajorAgencyName.equals(other.primeAwardFundingMajorAgencyName))
             return false;
         if (primeAwardIDVAgencyId == null) {
             if (other.primeAwardIDVAgencyId != null)
@@ -752,14 +689,12 @@ public class Doc extends SerializableBean {
         if (primeAwardProgramSourceAccount == null) {
             if (other.primeAwardProgramSourceAccount != null)
                 return false;
-        } else if (!primeAwardProgramSourceAccount
-                .equals(other.primeAwardProgramSourceAccount))
+        } else if (!primeAwardProgramSourceAccount.equals(other.primeAwardProgramSourceAccount))
             return false;
         if (primeAwardProgramSourceAgency == null) {
             if (other.primeAwardProgramSourceAgency != null)
                 return false;
-        } else if (!primeAwardProgramSourceAgency
-                .equals(other.primeAwardProgramSourceAgency))
+        } else if (!primeAwardProgramSourceAgency.equals(other.primeAwardProgramSourceAgency))
             return false;
         if (primeAwardProgramTitle == null) {
             if (other.primeAwardProgramTitle != null)
@@ -769,8 +704,7 @@ public class Doc extends SerializableBean {
         if (programSourceSubAccount == null) {
             if (other.programSourceSubAccount != null)
                 return false;
-        } else if (!programSourceSubAccount
-                .equals(other.programSourceSubAccount))
+        } else if (!programSourceSubAccount.equals(other.programSourceSubAccount))
             return false;
         if (spendingType == null) {
             if (other.spendingType != null)
@@ -795,14 +729,12 @@ public class Doc extends SerializableBean {
         if (subcontractFundingAgencyId == null) {
             if (other.subcontractFundingAgencyId != null)
                 return false;
-        } else if (!subcontractFundingAgencyId
-                .equals(other.subcontractFundingAgencyId))
+        } else if (!subcontractFundingAgencyId.equals(other.subcontractFundingAgencyId))
             return false;
         if (subcontractFundingAgencyName == null) {
             if (other.subcontractFundingAgencyName != null)
                 return false;
-        } else if (!subcontractFundingAgencyName
-                .equals(other.subcontractFundingAgencyName))
+        } else if (!subcontractFundingAgencyName.equals(other.subcontractFundingAgencyName))
             return false;
         if (subcontractNumber == null) {
             if (other.subcontractNumber != null)
@@ -812,38 +744,32 @@ public class Doc extends SerializableBean {
         if (subcontractPrincipalNAICSCode == null) {
             if (other.subcontractPrincipalNAICSCode != null)
                 return false;
-        } else if (!subcontractPrincipalNAICSCode
-                .equals(other.subcontractPrincipalNAICSCode))
+        } else if (!subcontractPrincipalNAICSCode.equals(other.subcontractPrincipalNAICSCode))
             return false;
         if (subcontractPrincipalNAICSDescription == null) {
             if (other.subcontractPrincipalNAICSDescription != null)
                 return false;
-        } else if (!subcontractPrincipalNAICSDescription
-                .equals(other.subcontractPrincipalNAICSDescription))
+        } else if (!subcontractPrincipalNAICSDescription.equals(other.subcontractPrincipalNAICSDescription))
             return false;
         if (subcontractPrincipalPlaceCity == null) {
             if (other.subcontractPrincipalPlaceCity != null)
                 return false;
-        } else if (!subcontractPrincipalPlaceCity
-                .equals(other.subcontractPrincipalPlaceCity))
+        } else if (!subcontractPrincipalPlaceCity.equals(other.subcontractPrincipalPlaceCity))
             return false;
         if (subcontractPrincipalPlaceDistrict == null) {
             if (other.subcontractPrincipalPlaceDistrict != null)
                 return false;
-        } else if (!subcontractPrincipalPlaceDistrict
-                .equals(other.subcontractPrincipalPlaceDistrict))
+        } else if (!subcontractPrincipalPlaceDistrict.equals(other.subcontractPrincipalPlaceDistrict))
             return false;
         if (subcontractPrincipalPlaceZip == null) {
             if (other.subcontractPrincipalPlaceZip != null)
                 return false;
-        } else if (!subcontractPrincipalPlaceZip
-                .equals(other.subcontractPrincipalPlaceZip))
+        } else if (!subcontractPrincipalPlaceZip.equals(other.subcontractPrincipalPlaceZip))
             return false;
         if (subcontractProjectDescription == null) {
             if (other.subcontractProjectDescription != null)
                 return false;
-        } else if (!subcontractProjectDescription
-                .equals(other.subcontractProjectDescription))
+        } else if (!subcontractProjectDescription.equals(other.subcontractProjectDescription))
             return false;
         if (subcontractorCity == null) {
             if (other.subcontractorCity != null)
@@ -853,8 +779,7 @@ public class Doc extends SerializableBean {
         if (subcontractorCongressionalDistrict == null) {
             if (other.subcontractorCongressionalDistrict != null)
                 return false;
-        } else if (!subcontractorCongressionalDistrict
-                .equals(other.subcontractorCongressionalDistrict))
+        } else if (!subcontractorCongressionalDistrict.equals(other.subcontractorCongressionalDistrict))
             return false;
         if (subcontractorName == null) {
             if (other.subcontractorName != null)
@@ -881,46 +806,27 @@ public class Doc extends SerializableBean {
 
     @Override
     public String toString() {
-        return "Doc [primeAwardPIID=" + primeAwardPIID + ", primeAwardIDVPIID="
-            + primeAwardIDVPIID + ", primeAwardDateSubmitted="
-            + primeAwardDateSubmitted + ", primeAwardAmount="
-            + primeAwardAmount + ", primeAwardDateSigned="
-            + primeAwardDateSigned + ", primeAwardProgramTitle="
-            + primeAwardProgramTitle + ", primeAwardProgramSourceAgency="
-            + primeAwardProgramSourceAgency
-            + ", primeAwardProgramSourceAccount="
-            + primeAwardProgramSourceAccount + ", programSourceSubAccount="
-            + programSourceSubAccount + ", primeAwardAgencyId="
-            + primeAwardAgencyId + ", primeAwardIDVAgencyId="
-            + primeAwardIDVAgencyId + ", primeAwardContractingMajorAgency="
-            + primeAwardContractingMajorAgency
-            + ", primeAwardFundingMajorAgencyName="
-            + primeAwardFundingMajorAgencyName
-            + ", subcontactorDUNSNumber=" + subcontactorDUNSNumber
-            + ", subcontractorName=" + subcontractorName
-            + ", subcontractorStreet=" + subcontractorStreet
-            + ", subcontractorCity=" + subcontractorCity
-            + ", subcontractorState=" + subcontractorState
-            + ", subcontractorZipCode=" + subcontractorZipCode
-            + ", subcontractorCongressionalDistrict="
-            + subcontractorCongressionalDistrict
-            + ", subcontractPrincipalPlaceCity="
-            + subcontractPrincipalPlaceCity
-            + ", subcontractPrincipalPlaceZip="
-            + subcontractPrincipalPlaceZip
-            + ", subcontractPrincipalPlaceDistrict="
-            + subcontractPrincipalPlaceDistrict + ", subcontractAmount="
-            + subcontractAmount + ", subcontractDate=" + subcontractDate
-            + ", subcontractPrincipalNAICSCode="
-            + subcontractPrincipalNAICSCode
-            + ", subcontractPrincipalNAICSDescription="
-            + subcontractPrincipalNAICSDescription + ", subcontractNumber="
-            + subcontractNumber + ", subcontractProjectDescription="
-            + subcontractProjectDescription + ", spendingType="
-            + spendingType + ", fiscalYear=" + fiscalYear
-            + ", subcontractFundingAgencyId=" + subcontractFundingAgencyId
-            + ", subcontractFundingAgencyName="
-            + subcontractFundingAgencyName + ", toString()="
-            + super.toString() + "]";
+        return "Doc [primeAwardPIID=" + primeAwardPIID + ", primeAwardIDVPIID=" + primeAwardIDVPIID
+            + ", primeAwardDateSubmitted=" + primeAwardDateSubmitted + ", primeAwardAmount=" + primeAwardAmount
+            + ", primeAwardDateSigned=" + primeAwardDateSigned + ", primeAwardProgramTitle="
+            + primeAwardProgramTitle + ", primeAwardProgramSourceAgency=" + primeAwardProgramSourceAgency
+            + ", primeAwardProgramSourceAccount=" + primeAwardProgramSourceAccount + ", programSourceSubAccount="
+            + programSourceSubAccount + ", primeAwardAgencyId=" + primeAwardAgencyId + ", primeAwardIDVAgencyId="
+            + primeAwardIDVAgencyId + ", primeAwardContractingMajorAgency=" + primeAwardContractingMajorAgency
+            + ", primeAwardFundingMajorAgencyName=" + primeAwardFundingMajorAgencyName
+            + ", primeAwardFederalAwardId=" + primeAwardFederalAwardId + ", subcontactorDUNSNumber="
+            + subcontactorDUNSNumber + ", subcontractorName=" + subcontractorName + ", subcontractorStreet="
+            + subcontractorStreet + ", subcontractorCity=" + subcontractorCity + ", subcontractorState="
+            + subcontractorState + ", subcontractorZipCode=" + subcontractorZipCode
+            + ", subcontractorCongressionalDistrict=" + subcontractorCongressionalDistrict
+            + ", subcontractPrincipalPlaceCity=" + subcontractPrincipalPlaceCity + ", subcontractPrincipalPlaceZip="
+            + subcontractPrincipalPlaceZip + ", subcontractPrincipalPlaceDistrict="
+            + subcontractPrincipalPlaceDistrict + ", subcontractAmount=" + subcontractAmount + ", subcontractDate="
+            + subcontractDate + ", subcontractPrincipalNAICSCode=" + subcontractPrincipalNAICSCode
+            + ", subcontractPrincipalNAICSDescription=" + subcontractPrincipalNAICSDescription
+            + ", subcontractNumber=" + subcontractNumber + ", subcontractProjectDescription="
+            + subcontractProjectDescription + ", spendingType=" + spendingType + ", fiscalYear=" + fiscalYear
+            + ", subcontractFundingAgencyId=" + subcontractFundingAgencyId + ", subcontractFundingAgencyName="
+            + subcontractFundingAgencyName + "]";
     }
 }
