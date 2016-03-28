@@ -1,7 +1,8 @@
 package com.coherentlogic.usaspending.client.core.builders;
 
-import static com.coherentlogic.usaspending.client.core.util.Constants.NULL;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -9,7 +10,6 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Ignore;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.web.client.RestTemplate;
@@ -47,9 +47,7 @@ public class CompleteQueryBuilderTest {
         restTemplate = (RestTemplate) context.getBean (
             USA_SPENDING_REST_TEMPLATE_ID);
 
-        queryBuilder = new QueryBuilder(
-            restTemplate,
-            "http://www.usaspending.gov/");
+        queryBuilder = new QueryBuilder(restTemplate);
     }
 
     @After
@@ -68,17 +66,17 @@ public class CompleteQueryBuilderTest {
         List<SearchCriterion> searchCriteriaList =
             searchCriteria.getSearchCriterionList();
 
-        assertEquals(4, searchCriteriaList.size());
+        assertEquals(6, searchCriteriaList.size());
 
         for (SearchCriterion next : searchCriteria.getSearchCriterionList()) {
             if ("fiscal_year".equals(next.getField())) {
                 assertEquals("2009", next.getValue());
             } else if ("sortby".equals(next.getField())) {
-                assertEquals("DOLLARS_OBLIGATED", next.getValue());
+                assertEquals("OBLIGATED_AMOUNT desc", next.getValue());
             } else if ("records_from".equals(next.getField())) {
                 assertEquals("0", next.getValue());
             } else if ("max_records".equals(next.getField())) {
-                assertEquals("1000", next.getValue());
+                assertEquals("1500", next.getValue());
             }
         }
     }
@@ -90,15 +88,15 @@ public class CompleteQueryBuilderTest {
         // will be between these numbers (which means if this changes enough,
         // we'll need to change the boundary values).
         assertTrue("numFound: " + numFound,
-            750000L < numFound && numFound < 9950000L);
+            1000L < numFound && numFound < 9950000L);
 
-        assertEquals(1000L, result.getMaxRecords());
+        assertEquals(1500L, result.getMaxRecords());
 
         List<Doc> docList = result.getDocList();
 
-        assertEquals(1000, docList.size());
+        assertEquals(1500, docList.size());
 
-        reviewDocList (docList);
+        reviewDocList (docList, "SP070003D1380", "364124651");
     }
 
     /**
@@ -108,7 +106,7 @@ public class CompleteQueryBuilderTest {
      * detail=c&max_records=5000
      */
     @Test
-    @Ignore("Success with this test is unpredictable.")
+//    @Ignore("Success with this test is unpredictable.")
     public void testMaxRecordsSetAbove1000 () {
         Complete complete =
             queryBuilder
@@ -130,7 +128,7 @@ public class CompleteQueryBuilderTest {
     /**
      * The docList is not always ordered.
      */
-    private Doc findByPrimeAwardPIIDAndSubcontactorDUNSNumber (
+    static Doc findByPrimeAwardPIIDAndSubcontactorDUNSNumber (
         List<Doc> docList,
         String primeAwardPIID,
         String subcontactorDUNSNumber
@@ -150,92 +148,55 @@ public class CompleteQueryBuilderTest {
         return result;
     }
 
-    /*
-    <doc>
-      <PrimeAwardPIID>DEEE0000171</PrimeAwardPIID>
-      <PrimeAwardIDVPIID/>
-      <PrimeAwardDateSubmitted>2012-08-09T04:00:00Z</PrimeAwardDateSubmitted>
-      <PrimeAwardAmount/>
-      <PrimeAwardDateSigned/>
-      <PrimeAwardProgramTitle>TAS::89 0331::TAS RECOVERY - EERE- WEATHERIZATION ASSISTANCE PROGRAM - ENERGY EFFICIENCY AND RENEWABLE ENERGY, RECOVERY ACT</PrimeAwardProgramTitle>
-      <PrimeAwardProgramSourceAgency/>
-      <PrimeAwardProgramSourceAccount/>
-      <ProgramSourceSubAccount/>
-      <PrimeAwardAgencyId/>
-      <PrimeAwardIDVAgencyId/>
-      <PrimeAwardContractingMajorAgency/>
-      <PrimeAwardFundingMajorAgencyName/>
-      <SubcontactorDUNSNumber>054488510</SubcontactorDUNSNumber>
-      <SubcontractorName>NORTHEAST EMPLOYMENT &amp; TRAINING ORGANIZATION INC</SubcontractorName>
-      <SubcontractorStreet>147 CITIZENS RD</SubcontractorStreet>
-      <SubcontractorCity>DERBY</SubcontractorCity>
-      <SubcontractorState>VT</SubcontractorState>
-      <SubcontractorZipCode>058290147</SubcontractorZipCode>
-      <SubcontractorCongressionalDistrict>VTAL</SubcontractorCongressionalDistrict>
-      <SubcontractPrincipalPlaceCity>derby</SubcontractPrincipalPlaceCity>
-      <SubcontractPrincipalPlaceZip>058550584</SubcontractPrincipalPlaceZip>
-      <SubcontractPrincipalPlaceDistrict>VTAL</SubcontractPrincipalPlaceDistrict>
-      <SubcontractAmount>3702208.00</SubcontractAmount>
-      <SubcontractDate>2009-08-21T04:00:00Z</SubcontractDate>
-      <SubcontractPrincipalNAICSCode/>
-      <SubcontractPrincipalNAICSDescription/>
-      <SubcontractNumber>DEEE0000171</SubcontractNumber>
-      <SubcontractProjectDescription>Low income weatherization project</SubcontractProjectDescription>
-      <SpendingType>sg</SpendingType>
-      <FiscalYear>2009</FiscalYear>
-      <SubcontractFundingAgencyId/>
-      <SubcontractFundingAgencyName/>
-    </doc>
+    /* The doc list can change so if this starts to fail then first see if the previous doc is still available in the
+     * docList and, if it's not there then just pick a new one and test against that.
      */
-    private void reviewDocList (List<Doc> docList) {
+    static void reviewDocList (List<Doc> docList, String primeAwardPIID, String subcontactorDUNSNumber) {
         Doc doc = findByPrimeAwardPIIDAndSubcontactorDUNSNumber (
-            docList, "DEEE0000171", "054488510");
+            docList, primeAwardPIID, subcontactorDUNSNumber);
 
-        assertEquals ("DEEE0000171", doc.getPrimeAwardPIID ());
-        assertEquals (NULL, doc.getPrimeAwardIDVPIID ());
-        assertEquals ("2012-08-09T04:00:00Z", doc.getPrimeAwardDateSubmitted ());
-        assertEquals (NULL, doc.getPrimeAwardAmount ());
-        assertEquals (NULL, doc.getPrimeAwardDateSigned ());
-        assertEquals ("TAS::89 0331::TAS RECOVERY - EERE- WEATHERIZATION " +
-            "ASSISTANCE PROGRAM - ENERGY EFFICIENCY AND RENEWABLE ENERGY, " +
-            "RECOVERY ACT", doc.getPrimeAwardProgramTitle ());
-        assertEquals (NULL, doc.getPrimeAwardProgramSourceAgency ());
-        assertEquals (NULL, doc.getPrimeAwardProgramSourceAccount ());
-        assertEquals (NULL, doc.getProgramSourceSubAccount ());
-        assertEquals (NULL, doc.getPrimeAwardAgencyId ());
+        assertNotNull(doc);
 
-        assertEquals (NULL, doc.getPrimeAwardIDVAgencyId ());
-        assertEquals (NULL, doc.getPrimeAwardContractingMajorAgency ());
-        assertEquals (NULL, doc.getPrimeAwardFundingMajorAgencyName ());
-        assertEquals ("054488510", doc.getSubcontactorDUNSNumber ());
-        assertEquals ("NORTHEAST EMPLOYMENT & TRAINING ORGANIZATION INC",
-            doc.getSubcontractorName ());
-        assertEquals ("147 CITIZENS RD", doc.getSubcontractorStreet ());
-        assertEquals ("DERBY", doc.getSubcontractorCity ());
-        assertEquals ("VT", doc.getSubcontractorState ());
+        assertEquals (primeAwardPIID, doc.getPrimeAwardPIID ());
+        assertNotNull (doc.getPrimeAwardIDVPIID ());
+        assertNotNull (doc.getPrimeAwardDateSubmitted ());
+        assertNotNull (doc.getPrimeAwardAmount ());
+        assertNotNull (doc.getPrimeAwardDateSigned ());
+        assertNotNull (doc.getPrimeAwardProgramTitle ());
+        assertNotNull (doc.getPrimeAwardProgramSourceAgency ());
+        assertNotNull (doc.getPrimeAwardProgramSourceAccount ());
+        assertNull (doc.getProgramSourceSubAccount ());
+        assertNotNull (doc.getPrimeAwardAgencyId ());
 
-        assertEquals ("058290147", doc.getSubcontractorZipCode ());
-        assertEquals ("VTAL", doc.getSubcontractorCongressionalDistrict ());
-        assertEquals ("derby",
-            doc.getSubcontractPrincipalPlaceCity ());
-        assertEquals ("058550584", doc.getSubcontractPrincipalPlaceZip ());
-        assertEquals ("VTAL", doc.getSubcontractPrincipalPlaceDistrict ());
-        assertEquals ("3702208.00", doc.getSubcontractAmount ());
-        assertEquals ("2009-08-21T04:00:00Z", doc.getSubcontractDate ());
-        assertEquals (NULL, doc.getSubcontractPrincipalNAICSCode ());
-        assertEquals (NULL, doc.getSubcontractPrincipalNAICSDescription ());
-        assertEquals ("DEEE0000171", doc.getSubcontractNumber ());
-        assertEquals ("Low income weatherization project",
-            doc.getSubcontractProjectDescription ());
+        assertNotNull (doc.getPrimeAwardIDVAgencyId ());
+        assertNotNull (doc.getPrimeAwardContractingMajorAgency ());
+        assertNotNull (doc.getPrimeAwardFundingMajorAgencyName ());
+        assertNotNull (doc.getSubcontactorDUNSNumber ());
+        assertNotNull (doc.getSubcontractorName ());
+        assertNotNull (doc.getSubcontractorStreet ());
+        assertNotNull (doc.getSubcontractorCity ());
+        assertNotNull (doc.getSubcontractorState ());
+
+        assertNotNull (doc.getSubcontractorZipCode ());
+        assertNotNull (doc.getSubcontractorCongressionalDistrict ());
+        assertNotNull (doc.getSubcontractPrincipalPlaceCity ());
+        assertNotNull (doc.getSubcontractPrincipalPlaceZip ());
+        assertNotNull (doc.getSubcontractPrincipalPlaceDistrict ());
+        assertNotNull (doc.getSubcontractAmount ());
+        assertNotNull (doc.getSubcontractDate ());
+        assertNotNull (doc.getSubcontractPrincipalNAICSCode ());
+        assertNotNull (doc.getSubcontractPrincipalNAICSDescription ());
+        assertNotNull (doc.getSubcontractNumber ());
+        assertNotNull (doc.getSubcontractProjectDescription ());
 
         /**
          * See the note on the Doc spendingType property as this should not be
          * an enum.
          */
-        assertEquals ("sg", doc.getSpendingType ());
+        assertNotNull (doc.getSpendingType ());
 
-        assertEquals ("2009", doc.getFiscalYear ());
-        assertEquals (NULL, doc.getSubcontractFundingAgencyId ());
-        assertEquals (NULL, doc.getSubcontractFundingAgencyName ());
+        assertNotNull (doc.getFiscalYear ());
+        assertNotNull (doc.getSubcontractFundingAgencyId ());
+        assertNotNull (doc.getSubcontractFundingAgencyName ());
     }
 }
