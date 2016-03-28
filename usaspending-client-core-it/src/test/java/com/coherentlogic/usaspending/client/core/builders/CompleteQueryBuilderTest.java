@@ -106,7 +106,6 @@ public class CompleteQueryBuilderTest {
      * detail=c&max_records=5000
      */
     @Test
-//    @Ignore("Success with this test is unpredictable.")
     public void testMaxRecordsSetAbove1000 () {
         Complete complete =
             queryBuilder
