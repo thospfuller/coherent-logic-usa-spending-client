@@ -20,7 +20,7 @@ import com.coherentlogic.usaspending.client.core.builders.QueryBuilder;
  * @author <a href="support@coherentlogic.com">Support</a>
  */
 public class QueryBuilderFactory
-    implements Factory<QueryBuilder> {
+    implements Factory {
 
     private final RestTemplate restTemplate;
 
