@@ -1,5 +1,6 @@
 package com.coherentlogic.usaspending.client.core.builders;
 
+import static com.coherentlogic.usaspending.client.core.builders.CompleteQueryBuilderTest.QUERY_BUILDER;
 import static com.coherentlogic.usaspending.client.core.util.Constants.NULL;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -11,7 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
-import org.springframework.web.client.RestTemplate;
 
 import com.coherentlogic.usaspending.client.core.domain.Doc;
 import com.coherentlogic.usaspending.client.core.domain.Low;
@@ -26,29 +26,19 @@ import com.coherentlogic.usaspending.client.core.domain.SearchCriterion;
  */
 public class LowQueryBuilderTest {
 
-    static final String USA_SPENDING_REST_TEMPLATE_ID =
-        "usaSpendingRestTemplate";
-
     private final ApplicationContext context
         = new FileSystemXmlApplicationContext (
             "src/test/resources/spring/low-application-context.xml");
 
     private QueryBuilder queryBuilder = null;
 
-    private RestTemplate restTemplate = null;
-
     @Before
     public void setUp() throws Exception {
-
-        restTemplate = (RestTemplate) context.getBean (
-            USA_SPENDING_REST_TEMPLATE_ID);
-
-        queryBuilder = new QueryBuilder(restTemplate);
+        queryBuilder = context.getBean (QUERY_BUILDER, QueryBuilder.class);
     }
 
     @After
     public void tearDown() throws Exception {
-        restTemplate = null;
         queryBuilder = null;
     }
 
@@ -94,6 +84,8 @@ public class LowQueryBuilderTest {
      *
      * https://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009&stateCode=TX&
      * detail=c&max_records=5000
+     *
+     * @todo Finish the test by adding assertions.
      */
     @Test
     public void testMaxRecordsSetAbove1000 () {
@@ -105,8 +97,6 @@ public class LowQueryBuilderTest {
                 .setDetail(Detail.low)
                 .setMaxRecords(5000)
                 .doGet(Low.class);
-
-        System.out.println("uri: " + queryBuilder.getEscapedURI());
 
 //        SearchCriteria searchCriteria =
 //            low.getSearchCriteria();

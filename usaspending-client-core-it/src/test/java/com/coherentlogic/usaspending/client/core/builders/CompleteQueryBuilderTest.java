@@ -12,7 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
-import org.springframework.web.client.RestTemplate;
 
 import com.coherentlogic.usaspending.client.core.domain.Complete;
 import com.coherentlogic.usaspending.client.core.domain.Doc;
@@ -27,8 +26,8 @@ import com.coherentlogic.usaspending.client.core.domain.SearchCriterion;
  */
 public class CompleteQueryBuilderTest {
 
-    static final String USA_SPENDING_REST_TEMPLATE_ID =
-        "usaSpendingRestTemplate";
+    static final String QUERY_BUILDER =
+        "queryBuilder";
 
     private final ApplicationContext context
         = new FileSystemXmlApplicationContext (
@@ -38,20 +37,13 @@ public class CompleteQueryBuilderTest {
 
     private QueryBuilder queryBuilder = null;
 
-    private RestTemplate restTemplate = null;
-
     @Before
     public void setUp() throws Exception {
-
-        restTemplate = (RestTemplate) context.getBean (
-            USA_SPENDING_REST_TEMPLATE_ID);
-
-        queryBuilder = new QueryBuilder(restTemplate);
+        queryBuilder = context.getBean (CompleteQueryBuilderTest.QUERY_BUILDER, QueryBuilder.class);
     }
 
     @After
     public void tearDown() throws Exception {
-        restTemplate = null;
         queryBuilder = null;
     }
 

@@ -1,5 +1,6 @@
 package com.coherentlogic.usaspending.client.core.builders;
 
+import static com.coherentlogic.usaspending.client.core.builders.CompleteQueryBuilderTest.QUERY_BUILDER;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -48,20 +49,13 @@ public class SummaryQueryBuilderTest {
 
     private QueryBuilder queryBuilder = null;
 
-    private RestTemplate restTemplate = null;
-
     @Before
     public void setUp() throws Exception {
-
-        restTemplate = (RestTemplate) context.getBean (
-            USA_SPENDING_REST_TEMPLATE_ID);
-
-        queryBuilder = new QueryBuilder(restTemplate);
+        queryBuilder = context.getBean (QUERY_BUILDER, QueryBuilder.class);
     }
 
     @After
     public void tearDown() throws Exception {
-        restTemplate = null;
         queryBuilder = null;
     }
 

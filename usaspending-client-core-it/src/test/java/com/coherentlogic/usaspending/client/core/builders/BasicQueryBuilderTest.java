@@ -1,6 +1,5 @@
 package com.coherentlogic.usaspending.client.core.builders;
 
-import static com.coherentlogic.usaspending.client.core.util.Constants.NULL;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -9,10 +8,8 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Ignore;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
-import org.springframework.web.client.RestTemplate;
 
 import com.coherentlogic.usaspending.client.core.domain.Basic;
 import com.coherentlogic.usaspending.client.core.domain.Doc;
@@ -20,15 +17,14 @@ import com.coherentlogic.usaspending.client.core.domain.Result;
 import com.coherentlogic.usaspending.client.core.domain.SearchCriteria;
 import com.coherentlogic.usaspending.client.core.domain.SearchCriterion;
 
+import static com.coherentlogic.usaspending.client.core.builders.CompleteQueryBuilderTest.QUERY_BUILDER;
+
 /**
  * Integration test for the {@link QueryBuilder} class.
  *
  * @author <a href="mailto:support@coherentlogic.com">Support</a>
  */
 public class BasicQueryBuilderTest {
-
-    static final String USA_SPENDING_REST_TEMPLATE_ID =
-        "usaSpendingRestTemplate";
 
     private final ApplicationContext context
         = new FileSystemXmlApplicationContext (
@@ -38,20 +34,13 @@ public class BasicQueryBuilderTest {
 
     private QueryBuilder queryBuilder = null;
 
-    private RestTemplate restTemplate = null;
-
     @Before
     public void setUp() throws Exception {
-
-        restTemplate = (RestTemplate) context.getBean (
-            USA_SPENDING_REST_TEMPLATE_ID);
-
-        queryBuilder = new QueryBuilder(restTemplate);
+        queryBuilder = context.getBean (QUERY_BUILDER, QueryBuilder.class);
     }
 
     @After
     public void tearDown() throws Exception {
-        restTemplate = null;
         queryBuilder = null;
     }
 
