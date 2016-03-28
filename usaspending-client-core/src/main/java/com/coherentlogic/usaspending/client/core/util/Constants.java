@@ -146,6 +146,7 @@ public class Constants {
             "PrimeAwardContractingMajorAgency",
         PRIME_AWARD_FUNDING_MAJOR_AGENCY_NAME =
             "PrimeAwardFundingMajorAgencyName",
+        PRIME_AWARD_FEDERAL_AWARD_ID = "PrimeAwardFederalAwardId",
         SUBCONTRACTOR_DUNS_NUMBER = "SubcontactorDUNSNumber",
         SUBCONTRACTOR_NAME = "SubcontractorName",
         SUBCONTRACTOR_STREET = "SubcontractorStreet",
