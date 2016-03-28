@@ -48,7 +48,7 @@ public class Main {
                 <String, Object> (completeCache);
 
         QueryBuilder queryBuilder = new QueryBuilder (
-            restTemplate, "http://www.usaspending.gov/", cacheServiceProvider);
+            restTemplate, "https://www.usaspending.gov/", cacheServiceProvider);
 
         Monitor monitor = MonitorFactory.start(monKey);
 
