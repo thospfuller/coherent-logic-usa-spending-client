@@ -1,9 +1,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <bean id="usaSpendingRestTemplate" class="org.springframework.web.client.RestTemplate">
         <property name="messageConverters">
@@ -37,5 +40,20 @@
             </array>
         </property>
     </bean>
+
+    <bean id="queryBuilder" class="com.coherentlogic.usaspending.client.core.builders.QueryBuilder" scope="prototype">
+        <constructor-arg ref="usaSpendingRestTemplate"/>
+    </bean>
+
+    <bean id="springMonitoringAspectInterceptor"
+     class="org.springframework.aop.interceptor.JamonPerformanceMonitorInterceptor">
+        <property name="trackAllInvocations" value="true"/>
+        <property name="useDynamicLogger" value="true"/>
+    </bean>
+
+    <aop:config proxy-target-class="true">
+        <aop:advisor advice-ref="springMonitoringAspectInterceptor"
+         pointcut="execution(public * com.coherentlogic.coherent.data.model.core.builders.HttpMethodsSpecification.doGet(..)))"/>
+    </aop:config>
 </beans>
 
