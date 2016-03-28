@@ -43,9 +43,7 @@ public class LowQueryBuilderTest {
         restTemplate = (RestTemplate) context.getBean (
             USA_SPENDING_REST_TEMPLATE_ID);
 
-        queryBuilder = new QueryBuilder(
-            restTemplate,
-            "http://www.usaspending.gov/");
+        queryBuilder = new QueryBuilder(restTemplate);
     }
 
     @After
