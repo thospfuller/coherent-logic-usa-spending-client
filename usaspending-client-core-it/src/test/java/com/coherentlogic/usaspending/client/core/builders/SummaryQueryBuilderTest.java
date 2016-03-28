@@ -44,8 +44,7 @@ public class SummaryQueryBuilderTest {
         = new FileSystemXmlApplicationContext (
             "src/test/resources/spring/summary-application-context.xml");
 
-    /* http://www.usaspending.gov/fsrs/fsrs.php?fiscal_year=2010&detail=c
-     */
+    // https://www.usaspending.gov/fsrs/fsrs.php?fiscal_year=2010&detail=c
 
     private QueryBuilder queryBuilder = null;
 
@@ -84,8 +83,7 @@ public class SummaryQueryBuilderTest {
     /**
      * This will work however it will only return 1000 records.
      *
-     * www.usaspending.gov/fsrs/fsrs.php?fiscal_year=2009&stateCode=TX&detail=s
-     * &max_records=5000
+     * https://www.usaspending.gov/fsrs/fsrs.php?fiscal_year=2009&stateCode=TX&detail=s&max_records=5000
      */
     @Test
     @Ignore("The usaspending.gov website returns the following for this query (not that switching to 'l', ie. 'low' "

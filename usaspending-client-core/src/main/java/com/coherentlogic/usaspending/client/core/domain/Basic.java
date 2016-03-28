@@ -8,7 +8,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 /**
  * A class which represents basic search results from USASpending.gov.
  *
- * See <a href="http://www.usaspending.gov/fsrs/fsrs.php?fiscal_year=2009&stateCode=TX&detail=b&max_records=5000">here</a>
+ * See <a href="https://www.usaspending.gov/fsrs/fsrs.php?fiscal_year=2009&stateCode=TX&detail=b&max_records=5000">here</a>
  * for an example of basic data.
  *
  * @author <a href="mailto:support@coherentlogic.com">Support</a>

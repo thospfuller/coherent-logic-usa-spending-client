@@ -84,12 +84,12 @@ import com.coherentlogic.usaspending.client.core.exceptions.ValueOutOfBoundsExce
  *
  * The base URI is as follows:
  *
- * http://www.usaspending.gov
+ * https://www.usaspending.gov
  *
  * Methods in this class allow the developer to extend the base URI as well as
  * to set parameter name/value pairs.
  *
- * @see <a href="http://www.usaspending.gov/data">USASpending.gov</a>
+ * @see <a href="https://www.usaspending.gov/data">USASpending.gov</a>
  *
  * @todo Note that methods that don't check for a format will throw an NPE when
  *  called with a null arg juxtaposed with a method that checks for a specific
@@ -327,7 +327,7 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
      * must be an instance of DOMNode, null given in /usr/usas/mainsite/html/api
      * /fpds_api_complete.php on line 34
      *
-     * <a href="http://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009
+     * <a href="https://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009
      *  &stateCode=TX&detail=c&max_records=5000">Example</a>
      */
     public QueryBuilder setMaxRecords (int maxRecords) {
@@ -352,7 +352,7 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
     /**
      * Allows you to set the starting position of the records to be retrieved.
      *
-     * @see <a href="http://www.usaspending.gov/api/fpds_api_complete.php?
+     * @see <a href="https://www.usaspending.gov/api/fpds_api_complete.php?
      *  fiscal_year=2009&pop_state=TX&Contracts=c&sortby=DOLLARS_OBLIGATED%2B
      *  desc&records_from=2000&max_records=500&sortby=DOLLARS_OBLIGATED+desc">
      *  Example</a>
@@ -473,7 +473,7 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
 
     /**
      * The Congressional District in which the recipient is located, formatted
-     * with four characters. See <a href="http://www.usaspending.gov/customcode/
+     * with four characters. See <a href="https://www.usaspending.gov/customcode/
      * apidocsmore_popup.php?printnav=0#CDS">here</a> for list.
      */
     public QueryBuilder setRecipientCD (
@@ -486,7 +486,7 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
 
     /**
      * The FIPS state code for the state of the place of performance. See
-     * <a href="http://www.usaspending.gov/customcode/apidocsmore_popup.php?
+     * <a href="https://www.usaspending.gov/customcode/apidocsmore_popup.php?
      * printnav=0#FIPS">here</a> for list.
      */
     public QueryBuilder setPrincipalPlaceStateCode (
@@ -510,7 +510,7 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
 
     /**
      * The 4-character code for a specific governmental agency providing
-     * assistance. See <a href="http://www.usaspending.gov/customcode/
+     * assistance. See <a href="https://www.usaspending.gov/customcode/
      * apidocsmore_popup.php?printnav=0#FAADS_AGENCY">here</a> for list.
      */
     public QueryBuilder setAgencyCode (
@@ -564,9 +564,9 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
     /**
      * The two-letter country code for the country in a contractor's address.
      *
-     * @see <a href="http://www.usaspending.gov/customcode/apidocsmore_popup.php
+     * @see <a href="https://www.usaspending.gov/customcode/apidocsmore_popup.php
      *  ?printnav=0#COUNTRIES">Countries</a>
-     * @see http://www.usaspending.gov/data
+     * @see https://www.usaspending.gov/data
      */
     public QueryBuilder setVendorCountryCode (String vendorCountryCode) {
 
@@ -580,9 +580,9 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
     /**
      * The two-letter country code for the country in a contractor's address.
      *
-     * @see <a href="http://www.usaspending.gov/customcode/apidocsmore_popup.php
+     * @see <a href="https://www.usaspending.gov/customcode/apidocsmore_popup.php
      *  ?printnav=0#COUNTRIES">Countries</a>
-     * @see http://www.usaspending.gov/data
+     * @see https://www.usaspending.gov/data
      */
     public QueryBuilder setVendorCountryCode (CountryCode countryCode) {
         return this.setVendorCountryCode(toString (countryCode));
@@ -592,7 +592,7 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
      * The 4-character Congressional District within which a contractor is
      * located.
      *
-     * @see <a href="http://www.usaspending.gov/customcode/apidocsmore_popup.php
+     * @see <a href="https://www.usaspending.gov/customcode/apidocsmore_popup.php
      *  ?printnav=0#CDS">Here</a>
      *
      * @todo This method throws InvalidFormatException when null is passed,
@@ -610,7 +610,7 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
 
     /**
      * The Congressional District of the place of performance. See <a
-     * href="http://www.usaspending.gov/customcode/apidocsmore_popup.php?
+     * href="https://www.usaspending.gov/customcode/apidocsmore_popup.php?
      * printnav=0#CDS">here</a> for list.
      */
     public QueryBuilder setPopCD (String popCD) {
@@ -676,7 +676,7 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
 
     /**
      * The two-letter country code for the country in a subcontractor's address.
-     * See <a href="http://www.usaspending.gov/customcode/apidocsmore_popup.php?
+     * See <a href="https://www.usaspending.gov/customcode/apidocsmore_popup.php?
      * printnav=0#COUNTRIES">here</a> for list.
      */
     public QueryBuilder setSubawardeeCountry (String subawardeeCountry) {
@@ -690,7 +690,7 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
 
     /**
      * The 4-character Congressional District within which a subcontractor is
-     * located. See <a href="http://www.usaspending.gov/customcode/
+     * located. See <a href="https://www.usaspending.gov/customcode/
      * apidocsmore_popup.php?printnav=0#CDS">here</a> for list.
      */
     public QueryBuilder setSubawardeeCD (String subawardeeCD) {
@@ -704,7 +704,7 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
 
     /**
      * The Congressional District of the place of performance. See <a
-     * href="http://www.usaspending.gov/customcode/apidocsmore_popup.php?
+     * href="https://www.usaspending.gov/customcode/apidocsmore_popup.php?
      * printnav=0#CDS">here</a> for list.
      */
     public QueryBuilder setSubawardeePopCD (String subawardeePopCD) {
@@ -743,7 +743,7 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
 
     /**
      * The two-letter country code for the place of performance country.
-     * See <a href="http://www.usaspending.gov/customcode/apidocsmore_popup.php?
+     * See <a href="https://www.usaspending.gov/customcode/apidocsmore_popup.php?
      * printnav=0#COUNTRIES">here</a> for list.
      */
     public QueryBuilder setSubawardeePopCountry (String subawardeePopCountry) {
@@ -878,7 +878,7 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
 
     /**
      * The 4-digit code for a specific governmental agency issuing contracts.
-     * See <a href="http://www.usaspending.gov/customcode/apidocsmore_popup.php?
+     * See <a href="https://www.usaspending.gov/customcode/apidocsmore_popup.php?
      * printnav=0#FPDS_AGENCY">here</a> for list.
      */
     public QueryBuilder setModAgency (String modAgency) {
@@ -895,7 +895,7 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
 
     /**
      * The 2-character code for a major governmental agency issuing contracts.
-     * See <a href="http://www.usaspending.gov/customcode/apidocsmore_popup.php?
+     * See <a href="https://www.usaspending.gov/customcode/apidocsmore_popup.php?
      * printnav=0#FPDS_MAJAGENCY">here</a> for list.
      *
      * @todo Must check that this is two digits only!
@@ -1006,7 +1006,7 @@ public class QueryBuilder extends AbstractRESTQueryBuilder {
 
     /**
      * The 2-character code for a major product or service category.
-     * See <a href="http://www.usaspending.gov/customcode/apidocsmore_popup.php?
+     * See <a href="https://www.usaspending.gov/customcode/apidocsmore_popup.php?
      * printnav=0#PSCCAT">here</a> for list.
      *
      * @todo Must check that this is two digits only!

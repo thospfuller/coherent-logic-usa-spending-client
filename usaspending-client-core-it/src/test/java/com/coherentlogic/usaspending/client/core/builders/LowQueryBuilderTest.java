@@ -92,7 +92,7 @@ public class LowQueryBuilderTest {
     /**
      * This will work however it will only return 1000 records.
      *
-     * http://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009&stateCode=TX&
+     * https://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009&stateCode=TX&
      * detail=c&max_records=5000
      */
     @Test

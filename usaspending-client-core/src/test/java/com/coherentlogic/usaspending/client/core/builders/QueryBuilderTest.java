@@ -23,7 +23,7 @@ import com.coherentlogic.usaspending.client.core.util.Constants;
  */
 public class QueryBuilderTest {
 
-    public static final String DEFAULT_URI = "http://www.usaspending.gov",
+    public static final String DEFAULT_URI = "https://www.usaspending.gov",
         DEFAULT_STRING = "fubar";
 
     private QueryBuilder queryBuilder = null;
@@ -450,7 +450,7 @@ public class QueryBuilderTest {
             .setAgencyCode(DEFAULT_STRING)
             .getEscapedURI();
 
-        assertEquals("http://www.usaspending.gov?agency_code=fubar", uri);
+        assertEquals("https://www.usaspending.gov?agency_code=fubar", uri);
     }
 
     @Test(expected=NullPointerException.class)
@@ -464,7 +464,7 @@ public class QueryBuilderTest {
             .setAsstCatType(AsstCatType.l)
             .getEscapedURI();
 
-        assertEquals("http://www.usaspending.gov?asst_cat_type=l", uri);
+        assertEquals("https://www.usaspending.gov?asst_cat_type=l", uri);
     }
 
     @Test(expected=NullPointerException.class)
@@ -484,7 +484,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?asst_cat_type=fubar", uri);
+            "https://www.usaspending.gov?asst_cat_type=fubar", uri);
     }
 
     @Test
@@ -493,7 +493,7 @@ public class QueryBuilderTest {
             .setBusnIndctr(DEFAULT_STRING)
             .getEscapedURI();
 
-        assertEquals("http://www.usaspending.gov?busn_indctr=fubar", uri);
+        assertEquals("https://www.usaspending.gov?busn_indctr=fubar", uri);
     }
 
     @Test(expected=NullPointerException.class)
@@ -507,7 +507,7 @@ public class QueryBuilderTest {
             .setCFDAProgramNum(DEFAULT_STRING)
             .getEscapedURI();
 
-        assertEquals("http://www.usaspending.gov?cfda_program_num=fubar", uri);
+        assertEquals("https://www.usaspending.gov?cfda_program_num=fubar", uri);
     }
 
     @Test(expected=NullPointerException.class)
@@ -521,7 +521,7 @@ public class QueryBuilderTest {
             .setCity(DEFAULT_STRING)
             .getEscapedURI();
 
-        assertEquals("http://www.usaspending.gov?city=fubar", uri);
+        assertEquals("https://www.usaspending.gov?city=fubar", uri);
     }
 
     @Test(expected=NullPointerException.class)
@@ -535,7 +535,7 @@ public class QueryBuilderTest {
             .setState(DEFAULT_STRING)
             .getEscapedURI();
 
-        assertEquals("http://www.usaspending.gov?state=fubar", uri);
+        assertEquals("https://www.usaspending.gov?state=fubar", uri);
     }
 
     @Test(expected=NullPointerException.class)
@@ -549,7 +549,7 @@ public class QueryBuilderTest {
             .setZIPCode(DEFAULT_STRING)
             .getEscapedURI();
 
-        assertEquals("http://www.usaspending.gov?ZIPCode=fubar", uri);
+        assertEquals("https://www.usaspending.gov?ZIPCode=fubar", uri);
     }
 
     @Test(expected=NullPointerException.class)
@@ -566,7 +566,7 @@ public class QueryBuilderTest {
             .setVendorCD(vendorCD)
             .getEscapedURI();
 
-        assertEquals("http://www.usaspending.gov?vendor_cd=abcd", uri);
+        assertEquals("https://www.usaspending.gov?vendor_cd=abcd", uri);
     }
 
     @Test(expected=InvalidFormatException.class)
@@ -593,7 +593,7 @@ public class QueryBuilderTest {
             .setPopCD(popCD)
             .getEscapedURI();
 
-        assertEquals("http://www.usaspending.gov?pop_cd=abcd", uri);
+        assertEquals("https://www.usaspending.gov?pop_cd=abcd", uri);
     }
 
     @Test(expected=InvalidFormatException.class)
@@ -620,7 +620,7 @@ public class QueryBuilderTest {
             .setStateCode(stateCode)
             .getEscapedURI();
 
-        assertEquals("http://www.usaspending.gov?stateCode=IL", uri);
+        assertEquals("https://www.usaspending.gov?stateCode=IL", uri);
     }
 
     @Test(expected=NullPointerException.class)
@@ -637,7 +637,7 @@ public class QueryBuilderTest {
             .setSubawardeeName(value)
             .getEscapedURI();
 
-        assertEquals("http://www.usaspending.gov?subawardee_name=fubar", uri);
+        assertEquals("https://www.usaspending.gov?subawardee_name=fubar", uri);
     }
 
     @Test(expected=NullPointerException.class)
@@ -655,7 +655,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?subawardee_city_name=fubar", uri);
+            "https://www.usaspending.gov?subawardee_city_name=fubar", uri);
     }
 
     @Test(expected=NullPointerException.class)
@@ -670,7 +670,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?subawardee_state_code=fubar", uri);
+            "https://www.usaspending.gov?subawardee_state_code=fubar", uri);
     }
 
     @Test(expected=NullPointerException.class)
@@ -685,7 +685,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?subawardee_zip=fubar", uri);
+            "https://www.usaspending.gov?subawardee_zip=fubar", uri);
     }
 
     @Test(expected=NullPointerException.class)
@@ -700,7 +700,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?subawardee_country=US", uri);
+            "https://www.usaspending.gov?subawardee_country=US", uri);
     }
 
     @Test(expected=InvalidFormatException.class)
@@ -729,7 +729,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?subawardee_cd=AK00", uri);
+            "https://www.usaspending.gov?subawardee_cd=AK00", uri);
     }
 
     @Test(expected=InvalidFormatException.class)
@@ -758,7 +758,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?subawardee_pop_cd=AK00", uri);
+            "https://www.usaspending.gov?subawardee_pop_cd=AK00", uri);
     }
 
     @Test(expected=InvalidFormatException.class)
@@ -787,7 +787,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?subawardee_pop_state=AK", uri);
+            "https://www.usaspending.gov?subawardee_pop_state=AK", uri);
     }
 
     @Test(expected=InvalidFormatException.class)
@@ -816,7 +816,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-                "http://www.usaspending.gov?subawardee_pop_zip=60652", uri);
+                "https://www.usaspending.gov?subawardee_pop_zip=60652", uri);
     }
 
     /**
@@ -835,7 +835,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?subawardee_pop_country=ZZ", uri);
+            "https://www.usaspending.gov?subawardee_pop_country=ZZ", uri);
     }
 
     @Test(expected=InvalidFormatException.class)
@@ -864,7 +864,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?subaward_project_description=" +
+            "https://www.usaspending.gov?subaward_project_description=" +
             "foo+bar+baz+boo", uri);
     }
 
@@ -884,7 +884,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?prime_award_number=" +
+            "https://www.usaspending.gov?prime_award_number=" +
             "12345", uri);
     }
 
@@ -904,7 +904,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?prime_order_number=" +
+            "https://www.usaspending.gov?prime_order_number=" +
             "12345", uri);
     }
 
@@ -924,7 +924,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?subawardee_duns_number=" +
+            "https://www.usaspending.gov?subawardee_duns_number=" +
             "12345", uri);
     }
 
@@ -944,7 +944,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?prime_award_program_source_agency_code=" +
+            "https://www.usaspending.gov?prime_award_program_source_agency_code=" +
             "12345", uri);
     }
 
@@ -964,7 +964,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?" +
+            "https://www.usaspending.gov?" +
             "prime_award_program_source_account_code=12345", uri);
     }
 
@@ -984,7 +984,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?placeOfPerformanceZIPCode=" +
+            "https://www.usaspending.gov?placeOfPerformanceZIPCode=" +
             "12345", uri);
     }
 
@@ -1004,7 +1004,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?placeOfPerformanceCountryCode=XY", uri);
+            "https://www.usaspending.gov?placeOfPerformanceCountryCode=XY", uri);
     }
 
     @Test(expected=InvalidFormatException.class)
@@ -1033,7 +1033,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?mod_agency=XXYY", uri);
+            "https://www.usaspending.gov?mod_agency=XXYY", uri);
     }
 
     @Test(expected=InvalidFormatException.class)
@@ -1062,7 +1062,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?maj_agency_cat=XY", uri);
+            "https://www.usaspending.gov?maj_agency_cat=XY", uri);
     }
 
     @Test(expected=InvalidFormatException.class)
@@ -1091,7 +1091,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?recip_cat_type=fubar", uri);
+            "https://www.usaspending.gov?recip_cat_type=fubar", uri);
     }
 
     /**
@@ -1110,7 +1110,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?recip_cat_type=n", uri);
+            "https://www.usaspending.gov?recip_cat_type=n", uri);
     }
 
     /**
@@ -1129,7 +1129,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?project_description=fubar", uri);
+            "https://www.usaspending.gov?project_description=fubar", uri);
     }
 
     /**
@@ -1148,7 +1148,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?federal_award_id=fubar", uri);
+            "https://www.usaspending.gov?federal_award_id=fubar", uri);
     }
 
     /**
@@ -1167,7 +1167,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?psc_cat=XY", uri);
+            "https://www.usaspending.gov?psc_cat=XY", uri);
     }
 
     /**
@@ -1196,7 +1196,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?psc_sub=WXYZ", uri);
+            "https://www.usaspending.gov?psc_sub=WXYZ", uri);
     }
 
     /**
@@ -1225,7 +1225,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?descriptionOfContractRequirement=fubar",
+            "https://www.usaspending.gov?descriptionOfContractRequirement=fubar",
             uri);
     }
 
@@ -1245,7 +1245,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?PIID=fubar", uri);
+            "https://www.usaspending.gov?PIID=fubar", uri);
     }
 
     /**
@@ -1264,7 +1264,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?extent_compete=fubar", uri);
+            "https://www.usaspending.gov?extent_compete=fubar", uri);
     }
 
     /**
@@ -1283,7 +1283,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?extent_compete=CDO", uri);
+            "https://www.usaspending.gov?extent_compete=CDO", uri);
     }
 
     /**
@@ -1302,7 +1302,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?duns_number=fubar", uri);
+            "https://www.usaspending.gov?duns_number=fubar", uri);
     }
 
     /**
@@ -1321,7 +1321,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?progsrc_agen_code=fubar", uri);
+            "https://www.usaspending.gov?progsrc_agen_code=fubar", uri);
     }
 
     /**
@@ -1340,7 +1340,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?progsrc_acnt_code=fubar", uri);
+            "https://www.usaspending.gov?progsrc_acnt_code=fubar", uri);
     }
 
     /**
@@ -1359,7 +1359,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?program_source_agency_code=fubar", uri);
+            "https://www.usaspending.gov?program_source_agency_code=fubar", uri);
     }
 
     /**
@@ -1378,7 +1378,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?program_source_account_code=fubar", uri);
+            "https://www.usaspending.gov?program_source_account_code=fubar", uri);
     }
 
     /**
@@ -1397,7 +1397,7 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?program_source_desc=fubar", uri);
+            "https://www.usaspending.gov?program_source_desc=fubar", uri);
     }
 
     /**
@@ -1416,6 +1416,6 @@ public class QueryBuilderTest {
             .getEscapedURI();
 
         assertEquals(
-            "http://www.usaspending.gov?busn_indctr=r", uri);
+            "https://www.usaspending.gov?busn_indctr=r", uri);
     }
 }

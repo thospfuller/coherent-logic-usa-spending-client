@@ -9,7 +9,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * A class which represents medium-level detail search results from
  * USASpending.gov.
  *
- * See <a href="http://www.usaspending.gov/fsrs/fsrs.php?fiscal_year=2009&stateCode=TX&detail=m&max_records=5000">here</a>
+ * See <a href="https://www.usaspending.gov/fsrs/fsrs.php?fiscal_year=2009&stateCode=TX&detail=m&max_records=5000">here</a>
  * for an example of summary data.
  *
  * @author <a href="mailto:support@coherentlogic.com">Support</a>

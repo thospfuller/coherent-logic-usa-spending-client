@@ -34,8 +34,7 @@ public class BasicQueryBuilderTest {
         = new FileSystemXmlApplicationContext (
             "src/test/resources/spring/basic-application-context.xml");
 
-    /* http://www.usaspending.gov/fsrs/fsrs.php?fiscal_year=2010&detail=c
-     */
+    // https://www.usaspending.gov/fsrs/fsrs.php?fiscal_year=2010&detail=c
 
     private QueryBuilder queryBuilder = null;
 
@@ -96,7 +95,7 @@ public class BasicQueryBuilderTest {
     /**
      * This will work however it will only return 1000 records.
      *
-     * http://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009&stateCode=TX&
+     * https://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009&stateCode=TX&
      * detail=c&max_records=5000
      */
     @Test

@@ -9,7 +9,7 @@ import static com.coherentlogic.usaspending.client.core.util.Constants.SUMMARY;
 /**
  * Enumeration of detail options available in this framework.
  *
- * @see http://www.usaspending.gov/data#
+ * @see https://www.usaspending.gov/data#
  *
  * @author <a href="mailto:support@coherentlogic.com">Support</a>
  */
@@ -22,9 +22,9 @@ public enum Detail {
      * as the totals, the extent of competition, top 5 products or services
      * sold, top 5 purchasing agencies, top 10 contractors etc.
      *
-     * @see <a href="http://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009&
+     * @see <a href="https://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009&
      *  stateCode=TX&detail=s&max_records=10">XML Example</a>
-     * @see <a href="http://www.usaspending.gov/schemas/fpds_summary.xsd">XML
+     * @see <a href="https://www.usaspending.gov/schemas/fpds_summary.xsd">XML
      *  Schema Definition</a>
      */
     summary (SUMMARY),
@@ -36,9 +36,9 @@ public enum Detail {
      * with contractor names, parent company names and total amounts for each
      * contractor.
      *
-     * @see <a href="http://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009&
+     * @see <a href="https://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009&
      *  stateCode=TX&detail=l&max_records=10">XML Example</a>
-     * @see <a href="http://www.usaspending.gov/schemas/
+     * @see <a href="https://www.usaspending.gov/schemas/
      *  fpds_listofrecipients.xsd">XML Schema Definition</a>
      */
     low (LOW),
@@ -50,9 +50,9 @@ public enum Detail {
      * contractors as for the low level of details but provides significantly
      * more data for each contractor.
      *
-     * @see <a href="http://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009&
+     * @see <a href="https://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009&
      *  stateCode=TX&detail=m&max_records=10">XML Example</a>
-     * @see <a href="http://www.usaspending.gov/schemas/
+     * @see <a href="https://www.usaspending.gov/schemas/
      *  fpds_listofrecipients.xsd">XML Schema Definition</a>
      */
     medium (MEDIUM),
@@ -64,9 +64,9 @@ public enum Detail {
      * transactions. As with the low level of detail, there is only a few fields
      * for each transaction (amount,major agency, date and product/service etc).
      *
-     * @see <a href="http://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009&
+     * @see <a href="https://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009&
      *  stateCode=TX&detail=b&max_records=10">XML Example</a>
-     * @see <a href="http://www.usaspending.gov/schemas/PrimeBasicContracts.xsd"
+     * @see <a href="https://www.usaspending.gov/schemas/PrimeBasicContracts.xsd"
      *  >XML Schema Definition</a>
      */
     basic (BASIC),
@@ -81,9 +81,9 @@ public enum Detail {
      * might take a while to download, it is advisable to use a lesser level of
      * detail if possible.
      *
-     * @see <a href="http://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009&
+     * @see <a href="https://www.usaspending.gov/fpds/fpds.php?fiscal_year=2009&
      *  stateCode=TX&detail=c&max_records=10">XML Example</a>
-     * @see <a href="http://www.usaspending.gov/schemas/fpds_complete.xsd">XML
+     * @see <a href="https://www.usaspending.gov/schemas/fpds_complete.xsd">XML
      *  Schema Definition</a>
      */
     complete (COMPLETE);
