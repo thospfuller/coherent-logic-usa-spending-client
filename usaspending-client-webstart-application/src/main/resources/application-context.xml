@@ -146,41 +146,20 @@
 
     <bean id="basicQueryBuilderFactory" class="com.coherentlogic.usaspending.client.core.factories.QueryBuilderFactory">
         <constructor-arg name="restTemplate" ref="basicUSASpendingRestTemplate"/>
-        <constructor-arg name="uri" value="http://www.usaspending.gov/"/>
         <constructor-arg name="cacheServiceProviderSpecification" ref="nullCache"/>
     </bean>
     <bean id="mediumQueryBuilderFactory" class="com.coherentlogic.usaspending.client.core.factories.QueryBuilderFactory">
         <constructor-arg name="restTemplate" ref="mediumUSASpendingRestTemplate"/>
-        <constructor-arg name="uri" value="http://www.usaspending.gov/"/>
         <constructor-arg name="cacheServiceProviderSpecification" ref="nullCache"/>
     </bean>
         <bean id="summaryQueryBuilderFactory" class="com.coherentlogic.usaspending.client.core.factories.QueryBuilderFactory">
         <constructor-arg name="restTemplate" ref="summaryUSASpendingRestTemplate"/>
-        <constructor-arg name="uri" value="http://www.usaspending.gov/"/>
         <constructor-arg name="cacheServiceProviderSpecification" ref="nullCache"/>
     </bean>
         <bean id="completeQueryBuilderFactory" class="com.coherentlogic.usaspending.client.core.factories.QueryBuilderFactory">
         <constructor-arg name="restTemplate" ref="completeUSASpendingRestTemplate"/>
-        <constructor-arg name="uri" value="http://www.usaspending.gov/"/>
         <constructor-arg name="cacheServiceProviderSpecification" ref="nullCache"/>
     </bean>
-
-    <!-- bean id="basicQueryBuilder"
-     class="com.coherentlogic.usaspending.client.core.builders.QueryBuilder"
-     factory-bean="basicQueryBuilderFactory"
-     factory-method="getInstance"/>
-    <bean id="mediumQueryBuilder"
-     class="com.coherentlogic.usaspending.client.core.builders.QueryBuilder"
-     factory-bean="mediumQueryBuilderFactory"
-     factory-method="getInstance"/>
-    <bean id="summaryQueryBuilder"
-     class="com.coherentlogic.usaspending.client.core.builders.QueryBuilder"
-     factory-bean="summaryQueryBuilderFactory"
-     factory-method="getInstance"/>
-    <bean id="completeQueryBuilder"
-     class="com.coherentlogic.usaspending.client.core.builders.QueryBuilder"
-     factory-bean="completeQueryBuilderFactory"
-     factory-method="getInstance"/ -->
 
     <bean id="basicExampleResource" class="org.springframework.core.io.ClassPathResource">
         <constructor-arg name="path" value="BasicExample.groovy"/>
